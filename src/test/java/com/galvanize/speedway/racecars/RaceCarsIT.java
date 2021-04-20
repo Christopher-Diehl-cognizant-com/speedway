@@ -56,6 +56,44 @@ public class RaceCarsIT {
                 .andExpect(jsonPath("[0].owner").value(27))
                 .andExpect(jsonPath("[0].nickname").value("The Condor"));
     }
+
+    @Test
+    public void postMultipleRaceCarAndGetRaceCarList() throws Exception {
+        RaceCarDto raceCarDto1 = new RaceCarDto(
+                "The Condor",
+                "Corvette",
+                "2019",
+                27,
+                "AVAILABLE",
+                189,
+                "compact");
+
+        RaceCarDto raceCarDto2 = new RaceCarDto(
+                "The Ferrari",
+                "Ferrari",
+                "2019",
+                30,
+                "AVAILABLE",
+                220,
+                "compact");
+        mockMvc.perform(post("/racecars")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(raceCarDto1)))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/racecars")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(raceCarDto2)))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/racecars"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("length()").value(2))
+                .andExpect(jsonPath("[1].owner").value(30))
+                .andExpect(jsonPath("[1].nickname").value("The Ferrari"))
+                .andExpect(jsonPath("[0].owner").value(27))
+                .andExpect(jsonPath("[0].nickname").value("The Condor"));
+    }
 }
 
 
