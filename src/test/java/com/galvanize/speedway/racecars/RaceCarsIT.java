@@ -49,6 +49,12 @@ public class RaceCarsIT {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto)))
                 .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/racecars"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("length()").value(1))
+                .andExpect(jsonPath("[0].owner").value(27))
+                .andExpect(jsonPath("[0].nickname").value("The Condor"));
     }
 }
 
