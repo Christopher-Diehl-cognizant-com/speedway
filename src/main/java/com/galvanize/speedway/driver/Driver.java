@@ -12,18 +12,28 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "DRIVER_TABLE")
-public class Driver {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonIgnore
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private Short age;
-	private String nickName;
-	private Short winds;
-	private Short losses;
-	@ElementCollection
-	private List<Demo> cars;
+@Table(name="DRIVER_TABLE")
+public class Driver{
+
+   @Id
+   @GeneratedValue(strategy=GenerationType.AUTO)
+   @JsonIgnore
+   private Long id;
+   private String firstName;
+   private String lastName;
+   private Short age;
+   private String nickName;
+   private Short winds;
+   private Short losses;
+   @ElementCollection
+   private List<String> cars;
+
+   public Driver(String firstName,String lastName,Short age,String nickName,Short winds,Short losses){
+      this.firstName=firstName;
+      this.lastName=lastName;
+      this.age=age;
+      this.nickName=nickName;
+      this.winds=winds;
+      this.losses=losses;
+   }
 }
