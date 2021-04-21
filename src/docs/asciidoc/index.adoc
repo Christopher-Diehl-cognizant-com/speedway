@@ -11,3 +11,29 @@ include::{snippets}/Get-Drivers/http-request.adoc[]
 
 .response
 include::{snippets}/Get-Drivers/http-response.adoc[]
+
+=== Racecars
+
+getAllRaceCarsWhenEmpty
+
+request
+include::{snippets}/getAllRaceCarsWhenEmpty/http-request.adoc[]
+
+.response
+include::{snippets}/getAllRaceCarsWhenEmpty/http-response.adoc[]
+
+addRaceCars
+
+request
+include::{snippets}/addRaceCars/http-request.adoc[]
+
+.response
+include::{snippets}/addRaceCars/http-response.adoc[]
+
+getRaceCars
+
+request
+include::{snippets}/getRaceCars/http-request.adoc[]
+
+.response
+include::{snippets}/getRaceCars/http-response.adoc[]
