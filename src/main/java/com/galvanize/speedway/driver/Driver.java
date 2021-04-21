@@ -28,12 +28,15 @@ public class Driver{
    @ElementCollection
    private List<String> cars;
 
-   public Driver(String firstName,String lastName,Short age,String nickName,Short winds,Short losses){
+   public Driver(String firstName,String lastName,Short age,
+                 String nickName,Short winds,Short losses, List<String> cars)
+   {
       this.firstName=firstName;
       this.lastName=lastName;
       this.age=age;
       this.nickName=nickName;
       this.wins=winds;
       this.losses=losses;
+      this.cars = cars;
    }
 }
