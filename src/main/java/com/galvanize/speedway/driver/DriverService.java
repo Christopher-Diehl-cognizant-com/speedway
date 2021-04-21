@@ -13,4 +13,9 @@ public class DriverService {
 	public List<Driver> getDrivers(){
 		return this.driverRepository.findAll();
 	}
+
+	public void addDrivers(Driver driver)
+	{
+		this.driverRepository.save(driver);
+	}
 }

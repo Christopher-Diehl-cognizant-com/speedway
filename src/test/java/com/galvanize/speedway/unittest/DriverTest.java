@@ -3,6 +3,8 @@ package com.galvanize.speedway.unittest;
 import com.galvanize.speedway.driver.Driver;
 import com.galvanize.speedway.driver.DriverRepository;
 import com.galvanize.speedway.driver.DriverService;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -29,8 +31,11 @@ public class DriverTest{
 
    @Test
    public void getDriversTest(){
-      Driver d1=new Driver("firstName","lastName",Short.MIN_VALUE,"nickName",Short.MIN_VALUE,Short.MIN_VALUE);
-      Driver d2=new Driver("firstName","lastName",Short.MAX_VALUE,"nickName",Short.MAX_VALUE,Short.MAX_VALUE);
+      List<String> carList = new ArrayList<String>();
+      carList.add("A");
+      carList.add("B");
+      Driver d1=new Driver("firstName","lastName",Short.MIN_VALUE,"nickName",Short.MIN_VALUE,Short.MIN_VALUE, carList);
+      Driver d2=new Driver("firstName","lastName",Short.MAX_VALUE,"nickName",Short.MAX_VALUE,Short.MAX_VALUE, carList);
       when(this.repository.findAll())
          .thenReturn(
             Arrays.asList(
@@ -40,8 +45,8 @@ public class DriverTest{
       List<Driver> actual=this.service.getDrivers();
       assertThat(actual).isEqualTo(
          Arrays.asList(
-            new Driver("firstName","lastName",Short.MIN_VALUE,"nickName",Short.MIN_VALUE,Short.MIN_VALUE),
-            new Driver("firstName","lastName",Short.MAX_VALUE,"nickName",Short.MAX_VALUE,Short.MAX_VALUE)
+            new Driver("firstName","lastName",Short.MIN_VALUE,"nickName",Short.MIN_VALUE,Short.MIN_VALUE, carList),
+            new Driver("firstName","lastName",Short.MAX_VALUE,"nickName",Short.MAX_VALUE,Short.MAX_VALUE, carList)
          ));
    }
 }
