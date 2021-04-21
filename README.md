@@ -265,18 +265,15 @@ An example of a race object:
 Clients can add a new race as long as its occurred in the past, and they
 can also view races. Races cannot be altered once created.
 
-[](https://learn-2.galvanize.com/cohorts/2560/blocks/1167/content_files/units/05-speedway/00-readme.md "Instructor Notes")
-
-Instructor Notes
-
-[](https://learn-2.galvanize.com/cohorts/2560/blocks/1167/content_files/units/05-speedway/02-recommendations.md "Recommendations")
-
-NEXT:   Recommendations
-
-© 2013 - 2021 Galvanize, Inc.
-
--   [Privacy Policy](http://www.galvanize.com/privacy)
--   [Terms of Use](http://www.galvanize.com/terms-of-use)
--   [Galvanize](http://www.galvanize.com/)
--   [info@galvanize.com](mailto:info@galvanize.com)
-
+## Docker commands
+```docker build -t speedway:dev .```
+# Setup
+## Postgres
+```
+docker network create --driver bridge speedway-net
+docker run --name speedway_pg --network speedway-net -e POSTGRES_PASSWORD=speedway -e POSTGRES_DB=speedway_db -d postgres
+```
+### Run
+```
+docker run --name speedway1 --network speedway-net -e SPRING_PROFILES_ACTIVE=docker -e PORT=8080 -p 9000:8080 -d speedway:dev
+```
