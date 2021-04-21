@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,7 +34,8 @@ public class RaceCarsIT {
     public void getAllRaceCarsWhenEmpty() throws Exception {
         mockMvc.perform(get("/racecars"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(0));
+                .andExpect(jsonPath("length()").value(0))
+                .andDo(document("getAllRaceCarsWhenEmpty"));
     }
 
     @Test
@@ -48,13 +51,15 @@ public class RaceCarsIT {
         mockMvc.perform(post("/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andDo(document("addRaceCars"));
 
         mockMvc.perform(get("/racecars"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(1))
                 .andExpect(jsonPath("[0].owner").value(27))
-                .andExpect(jsonPath("[0].nickname").value("The Condor"));
+                .andExpect(jsonPath("[0].nickname").value("The Condor"))
+                .andDo(document("getRaceCars"));
     }
 
     @Test
@@ -79,12 +84,14 @@ public class RaceCarsIT {
         mockMvc.perform(post("/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto1)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andDo(document("addRaceCars"));
 
         mockMvc.perform(post("/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto2)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andDo(document("addRaceCars"));
 
         mockMvc.perform(get("/racecars"))
                 .andExpect(status().isOk())
@@ -92,7 +99,8 @@ public class RaceCarsIT {
                 .andExpect(jsonPath("[1].owner").value(30))
                 .andExpect(jsonPath("[1].nickname").value("The Ferrari"))
                 .andExpect(jsonPath("[0].owner").value(27))
-                .andExpect(jsonPath("[0].nickname").value("The Condor"));
+                .andExpect(jsonPath("[0].nickname").value("The Condor"))
+                .andDo(document("getRaceCars"));
     }
 }
 
