@@ -11,3 +11,11 @@ include::{snippets}/Get-Drivers/http-request.adoc[]
 
 .response
 include::{snippets}/Get-Drivers/http-response.adoc[]
+
+Post Drivers
+
+request
+include::{snippets}/Post-Drivers/http-request.adoc[]
+
+.response
+include::{snippets}/Post-Drivers/http-response.adoc[]

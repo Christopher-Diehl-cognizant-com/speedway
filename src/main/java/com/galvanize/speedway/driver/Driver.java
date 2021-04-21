@@ -23,7 +23,7 @@ public class Driver{
    private String lastName;
    private Short age;
    private String nickName;
-   private Short winds;
+   private Short wins;
    private Short losses;
    @ElementCollection
    private List<String> cars;
@@ -33,7 +33,7 @@ public class Driver{
       this.lastName=lastName;
       this.age=age;
       this.nickName=nickName;
-      this.winds=winds;
+      this.wins=winds;
       this.losses=losses;
    }
 }
