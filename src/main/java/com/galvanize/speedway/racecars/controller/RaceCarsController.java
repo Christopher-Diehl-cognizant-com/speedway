@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("racecars")
+@RequestMapping("/speedway")
 public class RaceCarsController {
 
     @Autowired
     RaceCarsService raceCarsService;
 
-    @GetMapping
+    @GetMapping("/racecars")
     public List<RaceCarDto> getRaceCars() { return raceCarsService.getAllRaceCars(); }
 
-    @PostMapping
+    @PostMapping("/racecars")
     @ResponseStatus(HttpStatus.CREATED)
     public RaceCarDto addRaceCars(@RequestBody RaceCarDto raceCarDto) {
         raceCarsService.addRaceCar(raceCarDto);
