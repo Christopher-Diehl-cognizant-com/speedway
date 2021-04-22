@@ -2,26 +2,33 @@
 :toc:
 :toclevels: 4
 
-=== Drivers
+== Drivers
 
-Get Drivers
-
-request
-include::{snippets}/Get-Drivers/http-request.adoc[]
-
-.response
-include::{snippets}/Get-Drivers/http-response.adoc[]
-
-Post Drivers
+getDrivers
 
 request
-include::{snippets}/Post-Drivers/http-request.adoc[]
+include::{snippets}/getDrivers/http-request.adoc[]
 
 .response
-include::{snippets}/Post-Drivers/http-response.adoc[]
+include::{snippets}/getDrivers/http-response.adoc[]
 
+postDrivers
 
-=== Racecars
+request
+include::{snippets}/postDrivers/http-request.adoc[]
+
+.response
+include::{snippets}/postDrivers/http-response.adoc[]
+
+getDriverDetails
+
+request
+include::{snippets}/getDriverDetails/http-request.adoc[]
+
+.response
+include::{snippets}/getDriverDetails/http-response.adoc[]
+
+== Racecars
 
 getAllRaceCarsWhenEmpty
 

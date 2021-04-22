@@ -7,6 +7,8 @@ import com.galvanize.speedway.driver.DriverService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.galvanize.speedway.response.SpeedwayResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -42,8 +44,8 @@ public class DriverTest{
                d1,
                d2));
 
-      List<Driver> actual=this.service.getDrivers();
-      assertThat(actual).isEqualTo(
+     SpeedwayResponse<Driver> actual=this.service.getDrivers();
+      assertThat(actual.getData()).isEqualTo(
          Arrays.asList(
             new Driver("firstName","lastName",Short.MIN_VALUE,"nickName",Short.MIN_VALUE,Short.MIN_VALUE, carList),
             new Driver("firstName","lastName",Short.MAX_VALUE,"nickName",Short.MAX_VALUE,Short.MAX_VALUE, carList)

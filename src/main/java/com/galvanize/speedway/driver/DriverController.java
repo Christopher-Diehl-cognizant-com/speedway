@@ -1,5 +1,6 @@
 package com.galvanize.speedway.driver;
 
+import com.galvanize.speedway.response.SpeedwayResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +13,14 @@ public class DriverController {
 	DriverService driverService;
 
 	@GetMapping("/drivers")
-	public ResponseEntity getDrivers(){
-		return new ResponseEntity(this.driverService.getDrivers(), HttpStatus.OK);
+	public SpeedwayResponse<Driver> getDrivers(){
+		return this.driverService.getDrivers();
 	}
 
 	@PostMapping("/drivers")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void addDrivers(@RequestBody Driver driver)
+	public SpeedwayResponse<Driver> addDrivers(@RequestBody Driver driver)
 	{
-		driverService.addDrivers(driver);
+		return driverService.addDrivers(driver);
 	}
 }
