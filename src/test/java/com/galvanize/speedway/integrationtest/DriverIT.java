@@ -36,7 +36,7 @@ public class DriverIT{
    public void getDriversTest() throws Exception{
       this.mockMvc.perform(get("/speedway/drivers"))
                .andExpect(status().isOk())
-               .andExpect(jsonPath("length()").value(0))
+               .andExpect(jsonPath("$.data.length()").value(0))
               .andDo(document("getDrivers"));
 
    }
@@ -63,15 +63,17 @@ public class DriverIT{
 
       this.mockMvc.perform(get("/speedway/drivers"))
               .andExpect(status().isOk())
-              .andExpect(jsonPath("length()").value(1))
+              .andExpect(jsonPath("$.data.length()").value(1))
          .andDo(document("getDriverDetails",responseFields(
-            fieldWithPath("[0].firstName").description("First Name of driver"),
-            fieldWithPath("[0].lastName").description("Last Name of driver"),
-            fieldWithPath("[0].age").description("Age of driver"),
-            fieldWithPath("[0].nickName").description("Nick Name of driver"),
-            fieldWithPath("[0].wins").description("Wins of driver"),
-            fieldWithPath("[0].losses").description("Losses of driver"),
-             fieldWithPath("[0].cars").description("Cars the driver has driven")
+                 fieldWithPath("status").description("Http Status"),
+                 fieldWithPath("status_code").description("Http Status Code"),
+            fieldWithPath("data[0].firstName").description("First Name of driver"),
+            fieldWithPath("data[0].lastName").description("Last Name of driver"),
+            fieldWithPath("data[0].age").description("Age of driver"),
+            fieldWithPath("data[0].nickName").description("Nick Name of driver"),
+            fieldWithPath("data[0].wins").description("Wins of driver"),
+            fieldWithPath("data[0].losses").description("Losses of driver"),
+             fieldWithPath("data[0].cars").description("Cars the driver has driven")
          )))
       ;
    }

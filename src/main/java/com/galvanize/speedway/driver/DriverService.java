@@ -1,6 +1,8 @@
 package com.galvanize.speedway.driver;
 
+import com.galvanize.speedway.response.SpeedwayResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,12 +12,24 @@ public class DriverService {
 	@Autowired
 	private DriverRepository driverRepository;
 
-	public List<Driver> getDrivers(){
-		return this.driverRepository.findAll();
+	public SpeedwayResponse<Driver> getDrivers(){
+
+		List<Driver> drivers = this.driverRepository.findAll();
+		return new SpeedwayResponse<>(
+				HttpStatus.OK,
+				HttpStatus.OK.value(),
+				drivers
+		);
 	}
 
-	public void addDrivers(Driver driver)
+	public SpeedwayResponse<Driver> addDrivers(Driver driver)
 	{
+
 		this.driverRepository.save(driver);
+		return new SpeedwayResponse<>(
+				HttpStatus.CREATED,
+				HttpStatus.CREATED.value(),
+				List.of(driver)
+		);
 	}
 }
