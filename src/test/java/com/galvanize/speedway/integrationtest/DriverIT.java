@@ -35,9 +35,10 @@ public class DriverIT{
    @Test
    public void getDriversTest() throws Exception{
       this.mockMvc.perform(get("/speedway/drivers"))
-         .andExpect(status().isOk())
-         .andExpect(jsonPath("length()").value(0))
-         ;
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("length()").value(0))
+              .andDo(document("getDrivers"));
+
    }
 
    @Test
@@ -58,12 +59,12 @@ public class DriverIT{
 
       mockMvc.perform(rq)
               .andExpect(status().isCreated())
-              .andDo(print());
+              .andDo(document("postDrivers"));
 
       this.mockMvc.perform(get("/speedway/drivers"))
               .andExpect(status().isOk())
               .andExpect(jsonPath("length()").value(1))
-         .andDo(document("GetDrivers",responseFields(
+         .andDo(document("getDriverDetails",responseFields(
             fieldWithPath("[0].firstName").description("First Name of driver"),
             fieldWithPath("[0].lastName").description("Last Name of driver"),
             fieldWithPath("[0].age").description("Age of driver"),
