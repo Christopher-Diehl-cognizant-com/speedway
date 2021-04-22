@@ -4,6 +4,7 @@ import com.galvanize.speedway.racecars.model.RaceCarDto;
 import com.galvanize.speedway.racecars.model.RaceCarEntity;
 import com.galvanize.speedway.racecars.repository.RaceCarsRepository;
 import com.galvanize.speedway.racecars.service.RaceCarsService;
+import com.galvanize.speedway.response.SpeedwayResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -74,8 +75,8 @@ public class RaceCarsServiceUT {
                 List.of(entity1)
         );
 
-        List<RaceCarDto> actual = subject.getAllRaceCars();
-        assertThat(actual).isEqualTo(
+        SpeedwayResponse<RaceCarDto> actual = subject.getAllRaceCars();
+        assertThat(actual.getData()).isEqualTo(
                 List.of(dto1)
         );
     }

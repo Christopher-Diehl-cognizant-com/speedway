@@ -34,7 +34,8 @@ public class RaceCarsIT {
     public void getAllRaceCarsWhenEmpty() throws Exception {
         mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(0))
+                .andExpect(jsonPath("$.data.length()").value(0))
+                .andExpect(jsonPath("$.status_code").value(200))
                 .andDo(document("getAllRaceCarsWhenEmpty"));
     }
 
@@ -52,13 +53,15 @@ public class RaceCarsIT {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto)))
                 .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.status_code").value(201))
                 .andDo(document("addRaceCars"));
 
         mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(1))
-                .andExpect(jsonPath("[0].owner").value(27))
-                .andExpect(jsonPath("[0].nickname").value("The Condor"))
+                .andExpect(jsonPath("$.status_code").value(200))
+                .andExpect(jsonPath("$.data.length()").value(1))
+                .andExpect(jsonPath("$.data[0].owner").value(27))
+                .andExpect(jsonPath("$.data[0].nickname").value("The Condor"))
                 .andDo(document("getRaceCars"));
     }
 
@@ -85,21 +88,24 @@ public class RaceCarsIT {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto1)))
                 .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.status_code").value(201))
                 .andDo(document("addRaceCars"));
 
         mockMvc.perform(post("/speedway/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto2)))
                 .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.status_code").value(201))
                 .andDo(document("addRaceCars"));
 
         mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(2))
-                .andExpect(jsonPath("[1].owner").value(30))
-                .andExpect(jsonPath("[1].nickname").value("The Ferrari"))
-                .andExpect(jsonPath("[0].owner").value(27))
-                .andExpect(jsonPath("[0].nickname").value("The Condor"))
+                .andExpect(jsonPath("$.status_code").value(200))
+                .andExpect(jsonPath("$.data.length()").value(2))
+                .andExpect(jsonPath("$.data[1].owner").value(30))
+                .andExpect(jsonPath("$.data[1].nickname").value("The Ferrari"))
+                .andExpect(jsonPath("$.data[0].owner").value(27))
+                .andExpect(jsonPath("$.data[0].nickname").value("The Condor"))
                 .andDo(document("getRaceCars"));
     }
 }

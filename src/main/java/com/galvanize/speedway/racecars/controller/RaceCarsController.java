@@ -2,6 +2,7 @@ package com.galvanize.speedway.racecars.controller;
 
 import com.galvanize.speedway.racecars.model.RaceCarDto;
 import com.galvanize.speedway.racecars.service.RaceCarsService;
+import com.galvanize.speedway.response.SpeedwayResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,11 @@ public class RaceCarsController {
     RaceCarsService raceCarsService;
 
     @GetMapping("/racecars")
-    public List<RaceCarDto> getRaceCars() { return raceCarsService.getAllRaceCars(); }
+    public SpeedwayResponse<RaceCarDto> getRaceCars() { return raceCarsService.getAllRaceCars(); }
 
     @PostMapping("/racecars")
     @ResponseStatus(HttpStatus.CREATED)
-    public RaceCarDto addRaceCars(@RequestBody RaceCarDto raceCarDto) {
-        raceCarsService.addRaceCar(raceCarDto);
-        return raceCarDto;
+    public SpeedwayResponse<RaceCarDto> addRaceCars(@RequestBody RaceCarDto raceCarDto) {
+        return raceCarsService.addRaceCar(raceCarDto);
     }
 }
