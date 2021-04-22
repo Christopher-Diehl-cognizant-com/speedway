@@ -58,7 +58,19 @@ public class DriverIT{
 
       mockMvc.perform(rq)
               .andExpect(status().isCreated())
-              .andDo(print());
+              .andDo(print())
+              .andDo(document("Post-Drivers",requestFields(
+              fieldWithPath("firstName").description("Driver FirstName"),
+              fieldWithPath("lastName").description("Driver LastName"),
+              fieldWithPath("age").description("Driver Age"),
+              fieldWithPath("nickName").description("Driver NickName"),
+              fieldWithPath("wins").description("Driver Wins"),
+              fieldWithPath("losses").description("Driver Losses"),
+              fieldWithPath("cars").description("Driver Cars")
+               )
+//              responseFields(
+//                      fieldWithPath("message").description("Response message"))
+              ));;
 
       this.mockMvc.perform(get("/speedway/drivers"))
               .andExpect(status().isOk())
