@@ -32,7 +32,7 @@ public class RaceCarsIT {
 
     @Test
     public void getAllRaceCarsWhenEmpty() throws Exception {
-        mockMvc.perform(get("/racecars"))
+        mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(0))
                 .andDo(document("getAllRaceCarsWhenEmpty"));
@@ -48,13 +48,13 @@ public class RaceCarsIT {
                 "AVAILABLE",
                 189,
                 "compact");
-        mockMvc.perform(post("/racecars")
+        mockMvc.perform(post("/speedway/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto)))
                 .andExpect(status().isCreated())
                 .andDo(document("addRaceCars"));
 
-        mockMvc.perform(get("/racecars"))
+        mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(1))
                 .andExpect(jsonPath("[0].owner").value(27))
@@ -81,19 +81,19 @@ public class RaceCarsIT {
                 "AVAILABLE",
                 220,
                 "compact");
-        mockMvc.perform(post("/racecars")
+        mockMvc.perform(post("/speedway/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto1)))
                 .andExpect(status().isCreated())
                 .andDo(document("addRaceCars"));
 
-        mockMvc.perform(post("/racecars")
+        mockMvc.perform(post("/speedway/racecars")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(raceCarDto2)))
                 .andExpect(status().isCreated())
                 .andDo(document("addRaceCars"));
 
-        mockMvc.perform(get("/racecars"))
+        mockMvc.perform(get("/speedway/racecars"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(2))
                 .andExpect(jsonPath("[1].owner").value(30))
