@@ -1,35 +1,3 @@
-[](https://learn-2.galvanize.com/ "Galvanize Logo navigates to curriculum overview")
-
-Cognizant - Java CND S2 - 2021-02-22 - Remote
-
--   [Cognizant - Java CND S2 - 2021-02-22 -
-    Remote](https://learn-2.galvanize.com/cohorts/2560 "Cognizant - Java CND S2 - 2021-02-22 - Remote")
-
-2
-
-CD
-
-Christopher Diehl
-
--   [My Account](https://auth.galvanize.com/account)
-    christopher.diehl@cognizant.com
--   [Sign Out](https://learn-2.galvanize.com/sign_out)
-
-[](https://learn-2.galvanize.com/cohorts/2560)
-
-Speedway Trials API
-
-[](https://learn-2.galvanize.com/cohorts/2560/blocks/1167/content_files/units/05-speedway/01-unit-overview.md "Introduction")
-
-Introduction
-
-[](https://learn-2.galvanize.com/cohorts/2560/blocks/1167/content_files/units/05-speedway/02-recommendations.md "Recommendations")
-
-Recommendations
-
-[](https://learn-2.galvanize.com/cohorts/2560/blocks/1167/content_files/exercises/speedway.md "Speedway Trials API Checkpoint")
-
-Speedway Trials API Checkpoint
 
 Introduction
 ============
@@ -241,29 +209,6 @@ An example of a driver object:
 Clients can add new drivers and view drivers. Drivers cannot be deleted
 and their cars can only be updated by adding a new one (you cannot
 remove cars from a driver).
-
-#### Race... {#race}
-
--   have a name, date, and best time (minutes, seconds, millseconds).
--   have many participants (`Driver`{tabindex="0"}s)
--   have a winner (a `Driver`{tabindex="0"}).
--   have a category:
-    `open wheel, tour, sport car, rally, time attack, drag, off-road, stock car`{tabindex="0"}
-
-An example of a race object:
-
-    {
-        "id": 17,
-        "name": "Grand Prix III",
-        "category": "stock car",
-        "date": "2020-06-03",
-        "bestTime": "03:36:78",
-        "winner": {...},
-        "participants": [...]
-    }
-
-Clients can add a new race as long as its occurred in the past, and they
-can also view races. Races cannot be altered once created.
 
 ## Docker commands
 ```docker build -t speedway:dev .```
